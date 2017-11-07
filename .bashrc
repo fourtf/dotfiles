@@ -84,7 +84,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep -n --color=auto'
     alias fgrep='fgrep -n --color=auto'
     alias egrep='egrep -n --color=auto'
-    alias rgrep='grep -rn --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -121,3 +120,5 @@ fi
 
 LS_COLORS='ow=01;36;40'
 export LS_COLORS
+
+function rgrep  { grep -rn --color=auto "$1" .; }
