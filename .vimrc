@@ -11,6 +11,7 @@ Plugin 'ericcurtin/CurtineIncSw.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'valloric/youcompleteme'
 call vundle#end()
 
 " tabwidth 4
@@ -34,9 +35,13 @@ set splitbelow
 map <F3> :call CurtineIncSw()<CR>
 map <C-K> :NERDTreeToggle<CR>
 
+" airline tabs
+let g:airline#extensions#tabline#enabled = 1
+
 " airline theme
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+"let g:airline_theme='solarized'
+"let g:airline_solarized_bg='dark'
+let g:airline_theme='simple'
 
 " editor theme
 syntax enable
@@ -44,3 +49,7 @@ set background=dark
 
 " fix resizing screwing up the colors
 autocmd VimResized * :redraw!
+
+" youcompleteme
+map <F2> :YcmCompleter GoTo<CR>
+map <F1> :e#<CR>
