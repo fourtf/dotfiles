@@ -11,6 +11,7 @@ Plugin 'ericcurtin/CurtineIncSw.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'fatih/vim-go'
 Plugin 'valloric/youcompleteme'
 call vundle#end()
 
@@ -53,3 +54,6 @@ autocmd VimResized * :redraw!
 " youcompleteme
 map <F2> :YcmCompleter GoTo<CR>
 map <F1> :e#<CR>
+
+" go imports
+let g:go_fmt_command = "goimports"
