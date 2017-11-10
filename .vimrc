@@ -13,6 +13,7 @@ Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'fatih/vim-go'
 Plugin 'valloric/youcompleteme'
+Plugin 'tpope/vim-sleuth'
 call vundle#end()
 
 " tabwidth 4
@@ -24,6 +25,9 @@ set expandtab
 " relative line numbers
 set nu
 set rnu
+
+" disable swap files
+set noswapfile
 
 " remove delay when pressing O
 set timeout ttimeoutlen=100
