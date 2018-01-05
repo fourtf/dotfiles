@@ -13,7 +13,10 @@ Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'fatih/vim-go'
 Plugin 'valloric/youcompleteme'
+Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sleuth'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'wakatime/vim-wakatime'
 call vundle#end()
 
 " tabwidth 4
@@ -28,6 +31,9 @@ set rnu
 
 " disable swap files
 set noswapfile
+
+" disable word wrapping
+set nowrap
 
 " remove delay when pressing O
 set timeout ttimeoutlen=100
@@ -61,3 +67,15 @@ map <F1> :e#<CR>
 
 " go imports
 let g:go_fmt_command = "goimports"
+
+" resize with alt+arrow keys
+map <C-S-Left> :vertical resize -10<CR>
+map <C-S-Right> :vertical resize +10<CR>
+map <C-S-Up> :resize -7<CR>
+map <C-S-Down> :resize +7<CR>
+
+" allow editing over the file end
+set virtualedit=block
+
+" show line breaks
+set list
