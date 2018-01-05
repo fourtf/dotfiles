@@ -78,4 +78,4 @@ map <C-S-Down> :resize +7<CR>
 set virtualedit=block
 
 " show line breaks
-set list
+"set list
