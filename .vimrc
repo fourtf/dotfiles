@@ -13,10 +13,10 @@ Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'fatih/vim-go'
 Plugin 'valloric/youcompleteme'
+Plugin 'chiel92/vim-autoformat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sleuth'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'wakatime/vim-wakatime'
 call vundle#end()
 
 " tabwidth 4
@@ -35,6 +35,9 @@ set noswapfile
 " disable word wrapping
 set nowrap
 
+" enable mouse
+set mouse=a
+
 " remove delay when pressing O
 set timeout ttimeoutlen=100
 
@@ -50,8 +53,6 @@ map <C-K> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
 
 " airline theme
-"let g:airline_theme='solarized'
-"let g:airline_solarized_bg='dark'
 let g:airline_theme='simple'
 
 " editor theme
@@ -79,3 +80,10 @@ set virtualedit=block
 
 " show line breaks
 "set list
+
+" clang-format on save
+function! FormatOnSave()
+  let l:formatdiff = 1
+  Autoformat
+endfunction
+autocmd BufWritePre *.hpp,*.h,*.cc,*.cpp call FormatOnSave()
