@@ -61,3 +61,9 @@ map <F1> :e#<CR>
 
 " go imports
 let g:go_fmt_command = "goimports"
+
+" change split size
+nmap <C-S-Left> :vertical resize -10<CR>
+nmap <C-S-Right> :vertical resize +10<CR>
+nmap <C-S-Up> :resize -5<CR>
+nmap <C-S-Down> :resize +5<CR>
