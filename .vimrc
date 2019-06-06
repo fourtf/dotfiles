@@ -17,17 +17,15 @@ Plugin 'chiel92/vim-autoformat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sleuth'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'ntk148v/vim-horizon'
 call vundle#end()
 
 " tabwidth 4
 filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set expandtab
+set tabstop=4 shiftwidth=4 expandtab linebreak
 
 " relative line numbers
-set nu
-set rnu
+set nu rnu
 
 " disable swap files
 set noswapfile
@@ -42,8 +40,12 @@ set mouse=a
 set timeout ttimeoutlen=100
 
 " split on right and bottom
-set splitright
-set splitbelow
+set splitright splitbelow
+
+" switch buffers with gn, gp and gd
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>
 
 " switch between header and source
 map <F3> :call CurtineIncSw()<CR>
@@ -87,3 +89,10 @@ function! FormatOnSave()
   Autoformat
 endfunction
 autocmd BufWritePre *.hpp,*.h,*.cc,*.cpp call FormatOnSave()
+
+function! Text()
+  set smartindent wrap linebreak breakindent showbreak=.
+endfunction
+
+map <F8> :call Text()<CR>
+
