@@ -42,6 +42,15 @@ set timeout ttimeoutlen=100
 " split on right and bottom
 set splitright splitbelow
 
+" allow selecting further than the end of lines
+set virtualedit=block
+
+" lazyredraw for large bulk edits
+set lazyredraw
+
+" highlight all search matches
+set hls
+
 " switch buffers with gn, gp and gd
 map gn :bn<cr>
 map gp :bp<cr>
@@ -76,9 +85,6 @@ nmap <C-S-Left> :vertical resize -10<CR>
 nmap <C-S-Right> :vertical resize +10<CR>
 nmap <C-S-Up> :resize -5<CR>
 nmap <C-S-Down> :resize +5<CR>
-
-" allow editing over the file end
-set virtualedit=block
 
 " show line breaks
 "set list
