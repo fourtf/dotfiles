@@ -42,6 +42,7 @@ bindsym Mod4+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym Mod4+d exec dmenu_run
+bindsym Mod4+Shift+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -52,6 +53,10 @@ bindsym Mod4+$left focus left
 bindsym Mod4+$down focus down
 bindsym Mod4+$up focus up
 bindsym Mod4+$right focus right
+bindsym Mod4+Mod1+$left focus left
+bindsym Mod4+Mod1+$down focus down
+bindsym Mod4+Mod1+$up focus up
+bindsym Mod4+Mod1+$right focus right
 
 # alternatively, you can use the cursor keys:
 bindsym Mod4+Left focus left
