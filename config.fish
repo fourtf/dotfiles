@@ -16,11 +16,7 @@ function startssh
     sudo iwconfig wlp2s0 power off
 end
 
-set -x INCLUDEOS_PREFIX ~/includeos/
-set PATH ~/.nimble/bin ~/includeos/bin ~/.local/bin /etc/dotfiles/bin $PATH
-set -x ALGO /c/Users/danie/workspace_hska
+source ~/.config/fish/local.fish
+
 set -x LS_COLORS "$LS_COLORS:ow=1;34:tw=1;34:"
-set -x ANDROID_HOME /opt/android-sdk
-set -x JAVA_OPTS "-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee"
-set -x ENABLE_FLUTTER_DESKTOP true
 set -x EDITOR /usr/bin/vim
