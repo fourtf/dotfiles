@@ -18,5 +18,10 @@ end
 
 source ~/.config/fish/local.fish
 
+function gita
+    git add --patch
+end
+
+set PATH ~/.local/bin $PATH
 set -x LS_COLORS "$LS_COLORS:ow=1;34:tw=1;34:"
 set -x EDITOR /usr/bin/vim
