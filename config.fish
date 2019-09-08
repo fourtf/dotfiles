@@ -18,9 +18,7 @@ end
 
 source ~/.config/fish/local.fish
 
-function gita
-    git add --patch
-end
+alias gap "git add --patch ."
 
 set PATH ~/.local/bin $PATH
 set -x LS_COLORS "$LS_COLORS:ow=1;34:tw=1;34:"
