@@ -37,7 +37,7 @@ end
 
 function fish_prompt
     set_color white; echo -ns $USER @ (prompt_hostname) " "
-    set_color green; echo -sn (prompt_pwd | string trim | lolcat -)
+    set_color green; echo -sn (prompt_pwd | string trim)
     set_color red;   print_git_branch (pwd) " "
     set_color white; echo -sn "> "
 end
