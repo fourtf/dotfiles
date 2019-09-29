@@ -1,3 +1,16 @@
+# VARIABLES
+set LOCAL_CONFIG ~/.config/fish/local.fish
+set SHARED_CONFIG (status --current-filename)
+
+# HELPER FUNCTIONS
+function _default -a value default
+    if test "$value" = ""
+        echo "$default"
+    else
+        echo "$value"
+    end
+end
+
 # UTILITY FUNCTIONS
 function rgrep
     grep -rn --color=auto "$argv" .
@@ -13,15 +26,28 @@ function start-ssh
     sudo iwconfig wlp2s0 power off
 end
 
-alias count-lines "wc -l"
+function cat-all -a pattern -d "Concats all file contents recursively. Ignores .git directory."
+    find . -regextype sed -regex (_default "$pattern" ".*") -type f -not -path "*/.git/*" -exec cat "{}" \;
+end
+
 alias count-bytes "wc -c"
 alias count-chars "wc -m"
+alias count-lines "wc -l"
 alias count-words "wc -w"
+alias edit-config "$EDITOR $SHARED_CONFIG"
+alias edit-localconfig "$EDITOR $LOCAL_CONFIG"
 alias gap "git add --patch ."
 alias listen-port "nc -lvp"
+alias new-bash "echo /usr/bin/env sh >"
+alias new-sh "echo /usr/bin/env sh >"
+alias source-config "source $SHARED_CONFIG"
+alias source-localconfig "source $LOCAL_CONFIG"
+alias make "make -j4"
+alias make5 "make -j4 CFLAGS=\"-fmax-errors=5\""
+alias :w "echo the terminal has been saved"
 
-# LOCAL SCRIPT
-source ~/.config/fish/local.fish
+# LOAD LOCAL CONFIG
+source-localconfig
 
 # FISH CONFIG
 function print_git_branch

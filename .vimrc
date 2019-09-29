@@ -34,8 +34,8 @@ set noswapfile
 " disable word wrapping
 set nowrap
 
-" enable mouse
-set mouse=a
+" disable mouse
+set mouse=
 
 " remove delay when pressing O
 set timeout ttimeoutlen=100
@@ -51,6 +51,12 @@ set lazyredraw
 
 " highlight all search matches
 set hls
+
+" colors for diffs
+hi DiffAdd ctermbg=black ctermfg=green cterm=reverse
+hi DiffChange ctermbg=black ctermfg=magenta cterm=reverse
+hi DiffDelete ctermbg=black ctermfg=darkred cterm=reverse
+hi DiffText ctermbg=black ctermfg=red cterm=reverse
 
 " switch buffers with gn, gp and gd
 map gn :bn<cr>
