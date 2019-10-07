@@ -109,3 +109,14 @@ endfunction
 
 map <F8> :call Text()<CR>
 
+" Save window position when switching buffers
+if v:version >= 700
+  au BufLeave * let b:winview = winsaveview()
+  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+endif
+
+" disable clangd in ycm
+let g:ycm_use_clangd = 0
+
+" ignore .o files in CtrlP
+set wildignore+=*.o,moc_*,/.git/
