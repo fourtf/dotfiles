@@ -105,11 +105,12 @@ function! FormatOnSave()
 endfunction
 autocmd BufWritePre *.hpp,*.h,*.cc,*.cpp call FormatOnSave()
 
+" options for writing text
 function! Text()
   set smartindent wrap linebreak breakindent showbreak=.
 endfunction
 
-map <F8> :call Text()<CR>
+map _t :call Text()<CR>
 
 " Save window position when switching buffers
 if v:version >= 700
@@ -122,3 +123,12 @@ let g:ycm_use_clangd = 0
 
 " ignore .o files in CtrlP
 set wildignore+=*.o,moc_*,/.git/
+
+" toggle virtualedit
+map _v :let &ve=&ve=="all"?"block":"all"<CR>
+
+" format xml
+map _fx :% !xmllint --nowarning -<CR>
+
+" format json
+map _fj :% !python -m json.tool -<CR>
