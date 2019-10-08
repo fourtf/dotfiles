@@ -19,6 +19,8 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'ntk148v/vim-horizon'
 Plugin 'dag/vim-fish'
+Plugin 'ollykel/v-vim'
+Plugin 'ziglang/zig.vim'
 call vundle#end()
 
 " tabwidth 4
