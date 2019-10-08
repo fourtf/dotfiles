@@ -21,7 +21,7 @@ function accept-port
 end
 
 function start-ssh
-    allowport 22
+    accept-port 22
     sudo systemctl start sshd
     sudo iwconfig wlp2s0 power off
 end
@@ -30,6 +30,8 @@ function cat-all -a pattern -d "Concats all file contents recursively. Ignores .
     find . -regextype sed -regex (_default "$pattern" ".*") -type f -not -path "*/.git/*" -exec cat "{}" \;
 end
 
+alias :w "echo the terminal has been saved"
+alias bake "bear make -j4"
 alias count-bytes "wc -c"
 alias count-chars "wc -m"
 alias count-lines "wc -l"
@@ -38,13 +40,12 @@ alias edit-config "$EDITOR $SHARED_CONFIG"
 alias edit-localconfig "$EDITOR $LOCAL_CONFIG"
 alias gap "git add --patch ."
 alias listen-port "nc -lvp"
-alias new-bash "echo /usr/bin/env sh >"
-alias new-sh "echo /usr/bin/env sh >"
-alias source-config "source $SHARED_CONFIG"
-alias source-localconfig "source $LOCAL_CONFIG"
 alias make "make -j4"
 alias make5 "make -j4 CFLAGS=\"-fmax-errors=5\""
-alias :w "echo the terminal has been saved"
+alias new-bash "echo \#!/usr/bin/env sh >"
+alias new-sh "echo \#!/usr/bin/env sh >"
+alias source-config "source $SHARED_CONFIG"
+alias source-localconfig "source $LOCAL_CONFIG"
 
 # LOAD LOCAL CONFIG
 source-localconfig
@@ -62,7 +63,7 @@ function print_git_branch
 end
 
 function fish_prompt
-    set_color white; echo -ns $USER @ (prompt_hostname) " "
+    set_color white; echo -ns $USER @ (prompt_hostname | string sub -s 1 -l 8) " "
     set_color green; echo -sn (prompt_pwd | string trim)
     set_color red;   print_git_branch (pwd) " "
     set_color white; echo -sn "> "
