@@ -30,6 +30,16 @@ function cat-all -a pattern -d "Concats all file contents recursively. Ignores .
     find . -regextype sed -regex (_default "$pattern" ".*") -type f -not -path "*/.git/*" -exec cat "{}" \;
 end
 
+function new-script -a app -a path
+    if test -e $path
+        echo already exists
+    else
+        echo \#!/usr/bin/env $app > $path
+        sudo chmod +x $path
+        vim $path
+    end
+end
+
 alias :w "echo the terminal has been saved"
 alias bake "bear make -j4"
 alias count-bytes "wc -c"
@@ -42,8 +52,7 @@ alias gap "git add --patch ."
 alias listen-port "nc -lvp"
 alias make "make -j4"
 alias make5 "make -j4 CFLAGS=\"-fmax-errors=5\""
-alias new-bash "echo \#!/usr/bin/env sh >"
-alias new-sh "echo \#!/usr/bin/env sh >"
+alias new-bash "new-script bash"
 alias source-config "source $SHARED_CONFIG"
 alias source-localconfig "source $LOCAL_CONFIG"
 
