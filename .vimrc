@@ -3,24 +3,46 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" Plugin manager
 Plugin 'VundleVim/Vundle.vim'
+
+" Powerline, buffers on top + info on bottom
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+" Fuzzy search for files (Ctrl+P)
 Plugin 'ctrlpvim/ctrlp.vim'
+
+" Switch between source/header files in C++ (F4)
 Plugin 'ericcurtin/CurtineIncSw.vim'
+
+" Open project tree (Ctrl+K)
 Plugin 'scrooloose/nerdtree'
-Plugin 'othree/html5.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'fatih/vim-go'
-Plugin 'valloric/youcompleteme'
+
+" Comment lines (gcc or Ctrl+//)
+Plugin 'tomtom/tcomment_vim'
+
+" Format on save
 Plugin 'chiel92/vim-autoformat'
-Plugin 'tpope/vim-surround'
+
+" Autocompletion
+Plugin 'valloric/youcompleteme'
+
+" Guess indent width
 Plugin 'tpope/vim-sleuth'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'ntk148v/vim-horizon'
-Plugin 'dag/vim-fish'
+
+" Zen mode (F3)
+Plugin 'junegunn/goyo.vim'
+
+" Programming languages
 Plugin 'ollykel/v-vim'
 Plugin 'ziglang/zig.vim'
+Plugin 'othree/html5.vim'
+Plugin 'fatih/vim-go'
+Plugin 'dag/vim-fish'
+
+" Misc
+Plugin 'tpope/vim-surround'
 call vundle#end()
 
 " tabwidth 4
@@ -132,3 +154,5 @@ map _fx :% !xmllint --nowarning -<CR>
 
 " format json
 map _fj :% !python -m json.tool -<CR>
+
+" asd
