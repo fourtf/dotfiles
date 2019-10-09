@@ -82,13 +82,13 @@ hi DiffChange ctermbg=black ctermfg=magenta cterm=reverse
 hi DiffDelete ctermbg=black ctermfg=darkred cterm=reverse
 hi DiffText ctermbg=black ctermfg=red cterm=reverse
 
-" switch buffers with gn, gp and gd
-map gn :bn<cr>
-map gp :bp<cr>
-map gd :bd<cr>
+" switch buffers with a leading count, e.g. 3<C-Left>
+map gd :bd<CR>
+map <C-Left> :<C-u>execute v:count1 . "bp"<CR>
+map <C-Right> :<C-u>execute v:count1 . "bn"<CR>
 
 " switch between header and source
-map <F3> :call CurtineIncSw()<CR>
+map <F4> :call CurtineIncSw()<CR>
 map <C-K> :NERDTreeToggle<CR>
 
 " airline tabs
@@ -149,10 +149,12 @@ set wildignore+=*.o,moc_*,/.git/
 " toggle virtualedit
 map _v :let &ve=&ve=="all"?"block":"all"<CR>
 
-" format xml
+" format/test xml
 map _fx :% !xmllint --nowarning -<CR>
+map _tx :%w !xmllint --noout -<CR>
 
 " format json
 map _fj :% !python -m json.tool -<CR>
 
-" asd
+" zen mod
+map <F3> :Goyo<CR>
