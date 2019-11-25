@@ -21,10 +21,11 @@ if confirm "Install VundleVim"; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
-confirm "Link .vimrc"          && ln -sf "$(pwd)/.vimrc"      "$HOME/.vimrc"
-confirm "Link .gvimrc"         && ln -sf "$(pwd)/.gvimrc"     "$HOME/.gvimrc"
-confirm "Link .bashrc"         && ln -sf "$(pwd)/.bashrc"     "$HOME/.bashrc"
-confirm "Link i3 config"       && ln -sf "$(pwd)/i3"          "$HOME/.config/i3/config"
-confirm "Link i3status config" && ln -sf "$(pwd)/i3status"    "$HOME/.config/i3status/config"
-confirm "Link fish config"     && ln -sf "$(pwd)/config.fish" "$HOME/.config/fish/config.fish"
-confirm "Link fishfile"        && ln -sf "$(pwd)/fishfile"    "$HOME/.config/fish/fishfile"
+confirm "Link .vimrc"               &&      ln -sf "$(pwd)/.vimrc"           "$HOME/.vimrc"
+confirm "Link .gvimrc"              &&      ln -sf "$(pwd)/.gvimrc"          "$HOME/.gvimrc"
+confirm "Link .bashrc"              &&      ln -sf "$(pwd)/.bashrc"          "$HOME/.bashrc"
+confirm "Link i3 config"            &&      ln -sf "$(pwd)/i3"               "$HOME/.config/i3/config"
+confirm "Link i3status config"      &&      ln -sf "$(pwd)/i3status"         "$HOME/.config/i3status/config"
+confirm "Link fish config"          &&      ln -sf "$(pwd)/config.fish"      "$HOME/.config/fish/config.fish"
+confirm "Link fishfile"             &&      ln -sf "$(pwd)/fishfile"         "$HOME/.config/fish/fishfile"
+confirm "Link xorg touchpad config" && sudo ln -sf "$(pwd)/90-touchpad.conf" "/etc/X11/xorg.conf.d/90-touchpad.conf"

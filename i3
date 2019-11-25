@@ -89,6 +89,8 @@ bindsym Mod4+f fullscreen toggle
 bindsym Mod4+s layout stacking
 bindsym Mod4+w layout tabbed
 bindsym Mod4+e layout toggle split
+bindsym Mod4+a focus parent
+bindsym Mod4+x focus child
 
 # toggle tiling / floating
 bindsym Mod4+Shift+space floating toggle
@@ -109,43 +111,41 @@ bindsym Mod4+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod4+minus scratchpad show
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-
 # switch to workspace
-bindsym Mod4+1 workspace $ws1
-bindsym Mod4+2 workspace $ws2
-bindsym Mod4+3 workspace $ws3
-bindsym Mod4+4 workspace $ws4
-bindsym Mod4+5 workspace $ws5
-bindsym Mod4+6 workspace $ws6
-bindsym Mod4+7 workspace $ws7
-bindsym Mod4+8 workspace $ws8
-bindsym Mod4+9 workspace $ws9
-bindsym Mod4+0 workspace $ws10
+bindsym Mod4+1 workspace number 1
+bindsym Mod4+2 workspace number 2
+bindsym Mod4+3 workspace number 3
+bindsym Mod4+4 workspace number 4
+bindsym Mod4+5 workspace number 5
+bindsym Mod4+6 workspace number 6
+bindsym Mod4+7 workspace number 7
+bindsym Mod4+8 workspace number 8
+bindsym Mod4+9 workspace number 9
+bindsym Mod4+0 workspace number 10
 
 # move focused container to workspace
-bindsym Mod4+Shift+1 move container to workspace $ws1
-bindsym Mod4+Shift+2 move container to workspace $ws2
-bindsym Mod4+Shift+3 move container to workspace $ws3
-bindsym Mod4+Shift+4 move container to workspace $ws4
-bindsym Mod4+Shift+5 move container to workspace $ws5
-bindsym Mod4+Shift+6 move container to workspace $ws6
-bindsym Mod4+Shift+7 move container to workspace $ws7
-bindsym Mod4+Shift+8 move container to workspace $ws8
-bindsym Mod4+Shift+9 move container to workspace $ws9
-bindsym Mod4+Shift+0 move container to workspace $ws10
+bindsym Mod4+Shift+1 move container to workspace number 1
+bindsym Mod4+Shift+2 move container to workspace number 2
+bindsym Mod4+Shift+3 move container to workspace number 3
+bindsym Mod4+Shift+4 move container to workspace number 4
+bindsym Mod4+Shift+5 move container to workspace number 5
+bindsym Mod4+Shift+6 move container to workspace number 6
+bindsym Mod4+Shift+7 move container to workspace number 7
+bindsym Mod4+Shift+8 move container to workspace number 8
+bindsym Mod4+Shift+9 move container to workspace number 9
+bindsym Mod4+Shift+0 move container to workspace number 10
+
+# move focused container to workspace and switch to workspace
+bindsym Mod4+Ctrl+1 move container to workspace number 1; workspace number 1
+bindsym Mod4+Ctrl+2 move container to workspace number 2; workspace number 2
+bindsym Mod4+Ctrl+3 move container to workspace number 3; workspace number 3
+bindsym Mod4+Ctrl+4 move container to workspace number 4; workspace number 4
+bindsym Mod4+Ctrl+5 move container to workspace number 5; workspace number 5
+bindsym Mod4+Ctrl+6 move container to workspace number 6; workspace number 6
+bindsym Mod4+Ctrl+7 move container to workspace number 7; workspace number 7
+bindsym Mod4+Ctrl+8 move container to workspace number 8; workspace number 8
+bindsym Mod4+Ctrl+9 move container to workspace number 9; workspace number 9
+bindsym Mod4+Ctrl+0 move container to workspace number 10; workspace number 10
 
 # reload the configuration file
 bindsym Mod4+Shift+c reload
@@ -190,7 +190,7 @@ bar {
 #######################################################################
 
 # style
-new_window 1pixel
+default_border pixel 1
 
 # autostart
 exec --no-startup-id nm-applet
@@ -198,15 +198,21 @@ exec --no-startup-id volumeicon
 exec --no-startup-id xss-lock -- xsecurelock
 
 # select output display
+## HDMI
 bindsym Mod4+F1 exec --no-startup-id xrandr --output HDMI2 --off --output eDP1 --auto
 bindsym Mod4+F2 exec --no-startup-id xrandr --output HDMI2 --auto --output eDP1 --off
 bindsym Mod4+F3 exec --no-startup-id xrandr --output eDP1 --auto --output HDMI2 --auto --right-of eDP1
 bindsym Mod4+F4 exec --no-startup-id xrandr --output HDMI2 --auto --output eDP1 --auto --right-of HDMI2
+## USB-C
+bindsym Mod4+Shift+F1 exec --no-startup-id xrandr --output DP1 --off --output eDP1 --auto
+bindsym Mod4+Shift+F2 exec --no-startup-id xrandr --output DP1 --auto --output eDP1 --off
+bindsym Mod4+Shift+F3 exec --no-startup-id xrandr --output eDP1 --auto --output DP1 --auto --right-of eDP1
+bindsym Mod4+Shift+F4 exec --no-startup-id xrandr --output DP1 --auto --output eDP1 --auto --right-of DP1
 
 # rotate display
-bindsym Mod4+Ctrl+Left exec --no-startup-id xrandr -o right
-bindsym Mod4+Ctrl+Down exec --no-startup-id xrandr -o normal
-bindsym Mod4+Ctrl+Right exec --no-startup-id xrandr -o left
+#bindsym Mod4+Ctrl+Left exec --no-startup-id xrandr -o right
+#bindsym Mod4+Ctrl+Down exec --no-startup-id xrandr -o normal
+#bindsym Mod4+Ctrl+Right exec --no-startup-id xrandr -o left
 
 # screen brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -221,8 +227,10 @@ bindsym Mod4+F6 exec --no-startup-id xcalib -c -a
 
 # launch apps
 bindsym Mod4+b fullscreen disable; exec --no-startup-id browser
+bindsym Mod4+Shift+b fullscreen disable; exec --no-startup-id chromium
 bindsym Mod4+t fullscreen disable; exec --no-startup-id term
 bindsym Shift+Ctrl+4 exec flameshot gui
+bindsym Mod4+n exec nm-popup
 
 # lock screen
 bindsym Mod4+Ctrl+L exec --no-startup-id xsecurelock

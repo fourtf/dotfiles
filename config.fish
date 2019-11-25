@@ -46,6 +46,7 @@ alias count-bytes "wc -c"
 alias count-chars "wc -m"
 alias count-lines "wc -l"
 alias count-words "wc -w"
+alias clip "xclip -selection c"
 alias edit-config "$EDITOR $SHARED_CONFIG"
 alias edit-localconfig "$EDITOR $LOCAL_CONFIG"
 alias gap "git add --patch ."
@@ -55,6 +56,15 @@ alias make5 "make -j4 CFLAGS=\"-fmax-errors=5\""
 alias new-bash "new-script bash"
 alias source-config "source $SHARED_CONFIG"
 alias source-localconfig "source $LOCAL_CONFIG"
+
+# Function for i3
+function set-ws -a nr -a name
+    if test -z "$nr"
+        echo 'set workspace nr $0 to name $0:$1'
+    else
+        i3-msg rename workspace "\""(i3-msg -t get_workspaces | jq -r ".[] | select(.num==$nr).name")"\"" to "$nr:$name"
+    end
+end
 
 # LOAD LOCAL CONFIG
 source-localconfig

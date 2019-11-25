@@ -3,6 +3,9 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" Git stuff (:G, :Gdiff, :Gpull)
+Plugin 'tpope/vim-fugitive'
+
 " Plugin manager
 Plugin 'VundleVim/Vundle.vim'
 
@@ -27,12 +30,13 @@ Plugin 'chiel92/vim-autoformat'
 
 " Autocompletion
 Plugin 'valloric/youcompleteme'
+"Plugin 'dense-analysis/ale'
 
 " Guess indent width
 Plugin 'tpope/vim-sleuth'
 
 " Zen mode (F3)
-Plugin 'junegunn/goyo.vim'
+"Plugin 'junegunn/goyo.vim'
 
 " Programming languages
 Plugin 'ollykel/v-vim'
@@ -40,13 +44,17 @@ Plugin 'ziglang/zig.vim'
 Plugin 'othree/html5.vim'
 Plugin 'fatih/vim-go'
 Plugin 'dag/vim-fish'
+Plugin 'elzr/vim-json'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'ElmCast/elm-vim'
+Plugin 'tkztmk/vim-vala'
 
 " Misc
 Plugin 'tpope/vim-surround'
 call vundle#end()
+filetype plugin indent on
 
 " tabwidth 4
-filetype plugin indent on
 set tabstop=4 shiftwidth=4 expandtab linebreak
 
 " relative line numbers
@@ -76,6 +84,10 @@ set lazyredraw
 " highlight all search matches
 set hls
 
+" highlight spaces at end of line
+highlight ExtraWhitespace ctermbg=52 guibg=red
+match ExtraWhitespace /\s\+$/
+
 " colors for diffs
 hi DiffAdd ctermbg=black ctermfg=green cterm=reverse
 hi DiffChange ctermbg=black ctermfg=magenta cterm=reverse
@@ -95,7 +107,7 @@ map <C-K> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
 
 " airline theme
-let g:airline_theme='simple'
+let g:airline_theme='wombat'
 
 " editor theme
 syntax enable
@@ -125,7 +137,7 @@ function! FormatOnSave()
   let l:formatdiff = 1
   Autoformat
 endfunction
-autocmd BufWritePre *.hpp,*.h,*.cc,*.cpp call FormatOnSave()
+autocmd BufWritePre *.hpp,*.h,*.c,*.cc,*.cpp call FormatOnSave()
 
 " options for writing text
 function! Text()
@@ -137,7 +149,7 @@ map _t :call Text()<CR>
 " Save window position when switching buffers
 if v:version >= 700
   au BufLeave * let b:winview = winsaveview()
-  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+  au BufEnter * if(exists('b:winview') && &diff == 0) | call winrestview(b:winview) | endif
 endif
 
 " disable clangd in ycm
@@ -156,5 +168,13 @@ map _tx :%w !xmllint --noout -<CR>
 " format json
 map _fj :% !python -m json.tool -<CR>
 
-" zen mod
+" zen mode
 map <F3> :Goyo<CR>
+
+" youcompleteme config
+let g:ycm_min_num_of_chars_for_completion = 0
+
+hi YcmErrorSection ctermbg=52
+hi YcmErrorSign ctermbg=52
+hi YcmWarningSection ctermbg=130
+hi YcmWarningSign ctermbg=130
