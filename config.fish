@@ -45,11 +45,12 @@ alias bake "bear make -j4"
 alias count-bytes "wc -c"
 alias count-chars "wc -m"
 alias count-lines "wc -l"
-alias count-words "wc -w"
 alias clip "xclip -selection c"
+alias count-words "wc -w"
 alias edit-config "$EDITOR $SHARED_CONFIG"
 alias edit-localconfig "$EDITOR $LOCAL_CONFIG"
 alias gap "git add --patch ."
+alias katze cat
 alias listen-port "nc -lvp"
 alias make "make -j4"
 alias make5 "make -j4 CFLAGS=\"-fmax-errors=5\""
@@ -73,7 +74,7 @@ source-localconfig
 function print_git_branch
     set p $argv[1]
     if test (string length $p) != 1; and test -d $p
-        if test -d $p/.git 
+        if test -d $p/.git
             echo -sn " "(sed -e "s_^.\+/__" $p/.git/HEAD 2> /dev/null | string sub -s 1 -l 8)
         else
             print_git_branch (dirname $p)

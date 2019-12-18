@@ -185,6 +185,7 @@ bindsym Mod4+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        separator_symbol "|"
 }
 
 #######################################################################
@@ -228,7 +229,7 @@ bindsym Mod4+F6 exec --no-startup-id xcalib -c -a
 # launch apps
 bindsym Mod4+b fullscreen disable; exec --no-startup-id browser
 bindsym Mod4+Shift+b fullscreen disable; exec --no-startup-id chromium
-bindsym Mod4+t fullscreen disable; exec --no-startup-id term
+bindsym Mod4+t fullscreen disable; exec --no-startup-id alacritty
 bindsym Shift+Ctrl+4 exec flameshot gui
 bindsym Mod4+n exec nm-popup
 
@@ -240,7 +241,9 @@ exec --no-startup-id setxkbmap 'us(altgr-intl)'
 
 # background picture
 exec --no-startup-id feh --bg-center /home/daniel/pepeL.jpg
-# ~/vim.jpg
+
+# set repeat rate
+exec --no-startup-id xset r rate 400 60
 
 # misc
 #bindsym Mod4+G workspace "google"
