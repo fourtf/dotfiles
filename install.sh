@@ -14,6 +14,17 @@ confirm() {
     fi
 }
 
+# create the containing folder and then link a file
+link() {
+    mkdir -p $(dirname $2)
+    ln -sf $1 $2
+}
+
+sudo_link() {
+    sudo mkdir -p $(dirname $2)
+    sudo ln -sf $1 $2
+}
+
 echo Sym-linking will override existing files!
 
 # questions
@@ -21,12 +32,13 @@ if confirm "Install VundleVim"; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
-confirm "Link vimrc"                &&      ln -sf "$(pwd)/vimrc"           "$HOME/.vimrc"
-confirm "Link gvimrc"               &&      ln -sf "$(pwd)/gvimrc"          "$HOME/.gvimrc"
-confirm "Link bashrc"               &&      ln -sf "$(pwd)/bashrc"          "$HOME/.bashrc"
-confirm "Link alacritty config"     &&      ln -sf "$(pwd)/alacritty.yml"    "$HOME/.config/alacritty/alacritty.yml"
-confirm "Link i3 config"            &&      ln -sf "$(pwd)/i3"               "$HOME/.config/i3/config"
-confirm "Link i3status config"      &&      ln -sf "$(pwd)/i3status"         "$HOME/.config/i3status/config"
-confirm "Link fish config"          &&      ln -sf "$(pwd)/config.fish"      "$HOME/.config/fish/config.fish"
-confirm "Link fishfile"             &&      ln -sf "$(pwd)/fishfile"         "$HOME/.config/fish/fishfile"
-confirm "Link xorg touchpad config" && sudo ln -sf "$(pwd)/90-touchpad.conf" "/etc/X11/xorg.conf.d/90-touchpad.conf"
+confirm "Link vimrc"                &&      link "$(pwd)/vimrc"            "$HOME/.vimrc"
+confirm "Link gvimrc"               &&      link "$(pwd)/gvimrc"           "$HOME/.gvimrc"
+confirm "Link bashrc"               &&      link "$(pwd)/bashrc"           "$HOME/.bashrc"
+confirm "Link alacritty config"     &&      link "$(pwd)/alacritty.yml"    "$HOME/.config/alacritty/alacritty.yml"
+confirm "Link i3 config"            &&      link "$(pwd)/i3"               "$HOME/.config/i3/config"
+confirm "Link i3status config"      &&      link "$(pwd)/i3status"         "$HOME/.config/i3status/config"
+confirm "Link fish config"          &&      link "$(pwd)/config.fish"      "$HOME/.config/fish/config.fish"
+confirm "Link fishfile"             &&      link "$(pwd)/fishfile"         "$HOME/.config/fish/fishfile"
+confirm "Link xorg touchpad config" && sudo_link "$(pwd)/90-touchpad.conf" "/etc/X11/xorg.conf.d/90-touchpad.conf"
+

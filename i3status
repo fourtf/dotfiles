@@ -35,7 +35,7 @@ order += "tztime local2"
 
 wireless wlp2s0 {
     #format_up = " %essid"
-    format_up = "warum hast du eine Subnetzmaske auf? %essid"
+    format_up = "wifi %essid"
 # %ip
     format_down = ""
 }
@@ -48,7 +48,7 @@ wireless wlp2s0 {
 
 
 battery 0 {
-    format = "warum liegt hier eigentlich Strom rum?%status %percentage (%remaining)"
+    format = "psu%status %percentage (%remaining)"
 #  %remaining %consumtion %consumption
     format_down = ""
     last_full_capacity = true
