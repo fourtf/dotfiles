@@ -1,6 +1,7 @@
 # VARIABLES
 set LOCAL_CONFIG ~/.config/fish/local.fish
 set SHARED_CONFIG (status --current-filename)
+set DOTFILE_DIR (dirname (readlink -f (status --current-filename)))
 
 # HELPER FUNCTIONS
 function _default -a value default
@@ -41,6 +42,8 @@ function new-script -a app -a path
 end
 
 alias :w "echo the terminal has been saved"
+alias allow-port accept-port
+alias open-port accept-port
 alias bake "bear make -j4"
 alias count-bytes "wc -c"
 alias count-chars "wc -m"
@@ -94,6 +97,6 @@ function fish_user_key_bindings
 end
 
 # ENVIRONMENT VARIABLES
-set PATH ~/.local/bin $PATH
+set PATH ~/.local/bin $PATH $DOTFILE_DIR/bin
 set -x LS_COLORS "$LS_COLORS:ow=1;34:tw=1;34:"
 set -x EDITOR /usr/bin/vim

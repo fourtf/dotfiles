@@ -10,8 +10,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'VundleVim/Vundle.vim'
 
 " Powerline, buffers on top + info on bottom
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 
 " Fuzzy search for files (Ctrl+P)
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -36,7 +36,7 @@ Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-sleuth'
 
 " Zen mode (F3)
-"Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/goyo.vim'
 
 " Programming languages
 Plugin 'ollykel/v-vim'
@@ -99,6 +99,13 @@ map gd :bd<CR>
 map <C-Left> :<C-u>execute v:count1 . "bp"<CR>
 map <C-Right> :<C-u>execute v:count1 . "bn"<CR>
 
+" switch tabs with a leading count
+map <A-Left> :<C-u>execute v:count1 . "tabp"<CR>
+"map <A-Right> :<C-u>execute v:count1 . "tabnext"<CR>
+map <A-Right> :tabnext<CR>
+map <A-Up> :tabnew<CR>
+map <A-Down> :tabclose<CR>
+
 " switch between header and source
 map <F4> :call CurtineIncSw()<CR>
 map <C-K> :NERDTreeToggle<CR>
@@ -107,7 +114,7 @@ map <C-K> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
 
 " airline theme
-let g:airline_theme='wombat'
+let g:airline_theme='angr'
 
 " editor theme
 syntax enable
@@ -170,6 +177,7 @@ map _fj :% !python -m json.tool -<CR>
 
 " zen mode
 map <F3> :Goyo<CR>
+let g:colors_name = ""
 
 " youcompleteme config
 let g:ycm_min_num_of_chars_for_completion = 0
@@ -178,3 +186,13 @@ hi YcmErrorSection ctermbg=52
 hi YcmErrorSign ctermbg=52
 hi YcmWarningSection ctermbg=130
 hi YcmWarningSign ctermbg=130
+
+" jump to last cursor position
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+
+" line number color
+hi LineNr ctermfg=240
+hi EndOfBUffer ctermfg=237
+

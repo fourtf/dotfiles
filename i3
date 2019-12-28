@@ -240,7 +240,7 @@ bindsym Mod4+Ctrl+L exec --no-startup-id xsecurelock
 exec --no-startup-id setxkbmap 'us(altgr-intl)'
 
 # background picture
-exec --no-startup-id feh --bg-center /home/daniel/pepeL.jpg
+exec --no-startup-id feh --bg-center /home/daniel/bgs/gondola002.jpg
 
 # set repeat rate
 exec --no-startup-id xset r rate 400 60
