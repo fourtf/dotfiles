@@ -1,0 +1,20 @@
+# i3 related
+i3
+i3status
+xss-lock
+volumeicon
+acpilight
+
+# shells
+fish
+elvish
+
+# terminal emulators
+alacritty
+
+# browsers
+chromium
+firefox
+
+# misc
+albert

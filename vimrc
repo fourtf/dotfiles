@@ -28,6 +28,9 @@ Plugin 'tomtom/tcomment_vim'
 " Format on save
 Plugin 'chiel92/vim-autoformat'
 
+" Replace in all files
+Plugin 'skwp/greplace.vim'
+
 " Autocompletion
 Plugin 'valloric/youcompleteme'
 "Plugin 'dense-analysis/ale'
@@ -48,6 +51,10 @@ Plugin 'elzr/vim-json'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'ElmCast/elm-vim'
 Plugin 'tkztmk/vim-vala'
+
+" Python
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
 
 " Misc
 Plugin 'tpope/vim-surround'
@@ -101,8 +108,8 @@ map <C-Right> :<C-u>execute v:count1 . "bn"<CR>
 
 " switch tabs with a leading count
 map <A-Left> :<C-u>execute v:count1 . "tabp"<CR>
-"map <A-Right> :<C-u>execute v:count1 . "tabnext"<CR>
-map <A-Right> :tabnext<CR>
+map <A-Right> :<C-u>execute "tabnext" . (tabpagenr() + v:count1) <CR>
+"map <A-Right> :tabnext<CR>
 map <A-Up> :tabnew<CR>
 map <A-Down> :tabclose<CR>
 
@@ -135,9 +142,6 @@ nmap <C-S-Left> :vertical resize -10<CR>
 nmap <C-S-Right> :vertical resize +10<CR>
 nmap <C-S-Up> :resize -5<CR>
 nmap <C-S-Down> :resize +5<CR>
-
-" show line breaks
-"set list
 
 " clang-format on save
 function! FormatOnSave()
@@ -189,10 +193,11 @@ hi YcmWarningSign ctermbg=130
 
 " jump to last cursor position
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
 endif
 
 " line number color
 hi LineNr ctermfg=240
 hi EndOfBUffer ctermfg=237
+
 

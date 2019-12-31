@@ -41,7 +41,7 @@ function new-script -a app -a path
     end
 end
 
-alias :w "echo the terminal has been saved"
+alias :w "echo \"/dev/tty\" [New] 0L, 0C written"
 alias allow-port accept-port
 alias open-port accept-port
 alias bake "bear make -j4"

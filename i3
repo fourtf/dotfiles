@@ -192,6 +192,7 @@ bar {
 
 # style
 default_border pixel 1
+hide_edge_borders smart
 
 # autostart
 exec --no-startup-id nm-applet
