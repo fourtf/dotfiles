@@ -184,6 +184,7 @@ bindsym Mod4+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        font pango: Icons, Noto Sans Mono 10
         status_command i3status
         separator_symbol "|"
 }

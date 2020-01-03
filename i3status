@@ -8,6 +8,8 @@
 # If the above line is not correctly displayed, fix your editor first!
 ###############################################################################
 
+# icons are from ttf-font-icons (AUR)
+
 general {
     interval = 1
     colors = true
@@ -34,8 +36,7 @@ order += "tztime local1"
 order += "tztime local2"
 
 wireless wlp2s0 {
-    #format_up = " %essid"
-    format_up = "wifi %essid"
+    format_up = " %essid"
 # %ip
     format_down = ""
 }
@@ -46,24 +47,19 @@ wireless wlp2s0 {
 #    format_down = ""
 #}
 
-
 battery 0 {
-    format = "psu%status %percentage (%remaining)"
+    format = "%status%percentage %remaining"
 #  %remaining %consumtion %consumption
     format_down = ""
     last_full_capacity = true
-    integer_battery_capacity = true
+    integer_battery_capacity = false
     low_threshold = 11
     threshold_type = percentage
     hide_seconds = true
-#    status_chr = " "
-#    status_bat = " "
-#    status_unk = " "
-#    status_full = " "
-    status_chr = " charging"
-    status_bat = ""
-    status_unk = ""
-    status_full = ""
+    status_chr = " "
+    status_bat = " "
+    status_unk = " "
+    status_full = " "
 }
 
 run_watch DHCP {
@@ -74,15 +70,12 @@ run_watch VPN {
     pidfile = "/var/run/vpnc/pid"
 }
 
-#%Y-%m-%d %H:%M:%S'
 tztime local1 {
-    #format = " %d/%m/%Y   %H:%M"
-    format = "%d.%m.%Y"
+    format = " %d.%m.%Y"
 }
 
 tztime local2 {
-    #format = " %d/%m/%Y   %H:%M"
-    format = "%H:%M"
+    format = " %H:%M  "
 }
 
 load {
@@ -90,8 +83,7 @@ load {
 }
 
 cpu_usage {
-    #format = " %usage"
-    format = "cpu %usage"
+    format = " %usage"
 }
 
 cpu_temperature 0 {
