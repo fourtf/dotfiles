@@ -70,6 +70,15 @@ function set-ws -a nr -a name
     end
 end
 
+# Replace pacman with powerpill if available
+function pacman
+    if type -q powerpill
+        powerpill $argv
+    else
+        /usr/bin/pacman $argv
+    end
+end
+
 # LOAD LOCAL CONFIG
 source-localconfig
 
