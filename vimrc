@@ -1,64 +1,60 @@
-" plugins
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 " Git stuff (:G, :Gdiff, :Gpull)
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
-" Plugin manager
-Plugin 'VundleVim/Vundle.vim'
+" Plug manager
+Plug 'VundleVim/Vundle.vim'
 
 " Powerline, buffers on top + info on bottom
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 
 " Fuzzy search for files (Ctrl+P)
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Switch between source/header files in C++ (F4)
-Plugin 'ericcurtin/CurtineIncSw.vim'
+Plug 'ericcurtin/CurtineIncSw.vim'
 
 " Open project tree (Ctrl+K)
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " Comment lines (gcc or Ctrl+//)
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 
 " Format on save
-Plugin 'chiel92/vim-autoformat'
+Plug 'chiel92/vim-autoformat'
 
 " Replace in all files
-Plugin 'skwp/greplace.vim'
+Plug 'skwp/greplace.vim'
 
 " Autocompletion
-Plugin 'valloric/youcompleteme'
-"Plugin 'dense-analysis/ale'
+Plug 'valloric/youcompleteme'
+"Plug 'dense-analysis/ale'
 
 " Guess indent width
-Plugin 'tpope/vim-sleuth'
+Plug 'tpope/vim-sleuth'
 
 " Zen mode (F3)
-Plugin 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 
 " Programming languages
-Plugin 'ollykel/v-vim'
-Plugin 'ziglang/zig.vim'
-Plugin 'othree/html5.vim'
-Plugin 'fatih/vim-go'
-Plugin 'dag/vim-fish'
-Plugin 'elzr/vim-json'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'ElmCast/elm-vim'
-Plugin 'tkztmk/vim-vala'
+Plug 'ollykel/v-vim'
+Plug 'ziglang/zig.vim'
+Plug 'othree/html5.vim'
+Plug 'fatih/vim-go'
+Plug 'dag/vim-fish'
+Plug 'elzr/vim-json'
+Plug 'elixir-editors/vim-elixir'
+Plug 'ElmCast/elm-vim'
+Plug 'tkztmk/vim-vala'
 
 " Python
-Plugin 'vim-syntastic/syntastic'
-Plugin 'nvie/vim-flake8'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
 
 " Misc
-Plugin 'tpope/vim-surround'
-call vundle#end()
+Plug 'tpope/vim-surround'
+call plug#end()
 filetype plugin indent on
 
 " tabwidth 4
@@ -200,4 +196,5 @@ endif
 hi LineNr ctermfg=240
 hi EndOfBUffer ctermfg=237
 
-
+" disabled ex mode
+map Q <NOP>
