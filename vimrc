@@ -180,7 +180,7 @@ map <F3> :Goyo<CR>
 let g:colors_name = ""
 
 " youcompleteme config
-let g:ycm_min_num_of_chars_for_completion = 0
+"let g:ycm_min_num_of_chars_for_completion = 1
 
 hi YcmErrorSection ctermbg=52
 hi YcmErrorSign ctermbg=52

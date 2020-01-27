@@ -41,23 +41,28 @@ function new-script -a app -a path
     end
 end
 
+function 0x0 -a path
+    curl -F"file=@$path" http://0x0.st
+end
+
 alias :w "echo \"/dev/tty\" [New] 0L, 0C written"
 alias allow-port accept-port
-alias open-port accept-port
 alias bake "bear make -j4"
+alias clip "xclip -selection c"
 alias count-bytes "wc -c"
 alias count-chars "wc -m"
 alias count-lines "wc -l"
-alias clip "xclip -selection c"
 alias count-words "wc -w"
 alias edit-config "$EDITOR $SHARED_CONFIG"
 alias edit-localconfig "$EDITOR $LOCAL_CONFIG"
+alias feh "feh --version-sort"
 alias gap "git add --patch ."
 alias katze cat
 alias listen-port "nc -lvp"
 alias make "make -j4"
 alias make5 "make -j4 CFLAGS=\"-fmax-errors=5\""
 alias new-bash "new-script bash"
+alias open-port accept-port
 alias source-config "source $SHARED_CONFIG"
 alias source-localconfig "source $LOCAL_CONFIG"
 
