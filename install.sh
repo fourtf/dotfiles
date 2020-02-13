@@ -42,3 +42,6 @@ confirm "Link fish config"          &&      link "$(pwd)/config.fish"      "$HOM
 confirm "Link fishfile"             &&      link "$(pwd)/fishfile"         "$HOME/.config/fish/fishfile"
 confirm "Link gtk-3.0 css file"     &&      link "$(pwd)/gtk-3.0.css"      "$HOME/.config/gtk-3.0/gtk.css"
 confirm "Link xorg touchpad config" && sudo_link "$(pwd)/90-touchpad.conf" "/etc/X11/xorg.conf.d/90-touchpad.conf"
+confirm "Link xorg keyboard config" && sudo_link "$(pwd)/00-keyboard.conf" "/etc/X11/xorg.conf.d/00-keyboard.conf"
+confirm "Link lock application"     && sudo_link "$(pwd)/lock"             "/usr/local/bin/lock"
+confirm "Link randzig"              && sudo_link "$(pwd)/randzig"          "/usr/local/bin/randzig"

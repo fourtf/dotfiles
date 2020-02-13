@@ -202,20 +202,14 @@ exec --no-startup-id xss-lock -- xsecurelock
 
 # select output display
 ## HDMI
-bindsym Mod4+F1 exec --no-startup-id xrandr --output HDMI2 --off --output eDP1 --auto
-bindsym Mod4+F2 exec --no-startup-id xrandr --output HDMI2 --auto --output eDP1 --off
-bindsym Mod4+F3 exec --no-startup-id xrandr --output eDP1 --auto --output HDMI2 --auto --right-of eDP1
-bindsym Mod4+F4 exec --no-startup-id xrandr --output HDMI2 --auto --output eDP1 --auto --right-of HDMI2
-## USB-C
-bindsym Mod4+Shift+F1 exec --no-startup-id xrandr --output DP1 --off --output eDP1 --auto
-bindsym Mod4+Shift+F2 exec --no-startup-id xrandr --output DP1 --auto --output eDP1 --off
-bindsym Mod4+Shift+F3 exec --no-startup-id xrandr --output eDP1 --auto --output DP1 --auto --right-of eDP1
-bindsym Mod4+Shift+F4 exec --no-startup-id xrandr --output DP1 --auto --output eDP1 --auto --right-of DP1
+bindsym Mod4+F1 exec --no-startup-id randzig auto
+bindsym Mod4+F2 exec --no-startup-id randzig external
+bindsym Mod4+F3 exec --no-startup-id randzig mirror
 
 # rotate display
-#bindsym Mod4+Ctrl+Left exec --no-startup-id xrandr -o right
-#bindsym Mod4+Ctrl+Down exec --no-startup-id xrandr -o normal
-#bindsym Mod4+Ctrl+Right exec --no-startup-id xrandr -o left
+bindsym Mod4+Shift+Ctrl+Left exec --no-startup-id xrandr -o right
+bindsym Mod4+Shift+Ctrl+Down exec --no-startup-id xrandr -o normal
+bindsym Mod4+Shift+Ctrl+Right exec --no-startup-id xrandr -o left
 
 # screen brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -251,3 +245,6 @@ exec --no-startup-id xset r rate 400 60
 #bindsym Mod4+G workspace "google"
 #exec --no-startup-id i3-msg 'workspace google; exec /usr/bin/term -e googler'
 #exec --no-startup-id i3-msg 'workspace 1'
+
+bindsym Mod4+Tab exec --no-startup-id i3-msg border normal
+bindsym Mod4+Shift+Tab exec --no-startup-id i3-msg border 1pixel
