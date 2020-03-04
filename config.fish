@@ -13,8 +13,12 @@ function _default -a value default
 end
 
 # UTILITY FUNCTIONS
+function find-file
+    fzf -0 -1 --preview='head -\$LINES {}' --preview-window=down
+end
+
 function rgrep
-    grep -rn --color=auto "$argv" .
+    grep -rn --color=auto --exclude-dir=node_modules "$argv" .
 end
 
 function accept-port
@@ -42,6 +46,10 @@ function new-script -a app -a path
 end
 
 function 0x0 -a path
+    if test -z $path
+        set path (find-file)
+    end
+
     curl -F"file=@$path" http://0x0.st
 end
 
@@ -63,8 +71,10 @@ alias make "make -j4"
 alias make5 "make -j4 CFLAGS=\"-fmax-errors=5\""
 alias new-bash "new-script bash"
 alias open-port accept-port
+alias pacs "eval \"pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S\""
 alias source-config "source $SHARED_CONFIG"
 alias source-localconfig "source $LOCAL_CONFIG"
+alias yays "eval \"yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro sudo yay -S\""
 
 # Function for i3
 function set-ws -a nr -a name
@@ -72,15 +82,6 @@ function set-ws -a nr -a name
         echo 'set workspace nr $0 to name $0:$1'
     else
         i3-msg rename workspace "\""(i3-msg -t get_workspaces | jq -r ".[] | select(.num==$nr).name")"\"" to "$nr:$name"
-    end
-end
-
-# Replace pacman with powerpill if available
-function pacman
-    if type -q powerpill
-        powerpill $argv
-    else
-        /usr/bin/pacman $argv
     end
 end
 
