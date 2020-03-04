@@ -10,7 +10,7 @@ Plug 'VundleVim/Vundle.vim'
 "Plug 'vim-airline/vim-airline-themes'
 
 " Fuzzy search for files (Ctrl+P)
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 
 " Switch between source/header files in C++ (F4)
 Plug 'ericcurtin/CurtineIncSw.vim'
@@ -47,13 +47,15 @@ Plug 'elzr/vim-json'
 Plug 'elixir-editors/vim-elixir'
 Plug 'ElmCast/elm-vim'
 Plug 'tkztmk/vim-vala'
+Plug 'nvie/vim-flake8' " Python
 
-" Python
-Plug 'vim-syntastic/syntastic'
-Plug 'nvie/vim-flake8'
+" Frameworks
+Plug 'posva/vim-vue'
 
 " Misc
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 filetype plugin indent on
 
@@ -144,7 +146,7 @@ function! FormatOnSave()
   let l:formatdiff = 1
   Autoformat
 endfunction
-autocmd BufWritePre *.hpp,*.h,*.c,*.cc,*.cpp call FormatOnSave()
+"autocmd BufWritePre *.hpp,*.h,*.c,*.cc,*.cpp call FormatOnSave()
 
 " options for writing text
 function! Text()
@@ -175,6 +177,14 @@ map _tx :%w !xmllint --noout -<CR>
 " format json
 map _fj :% !python -m json.tool -<CR>
 
+" format using clang-format
+function! ClangFormatHK()
+  let l:save_pos = getpos(".")
+  execute "% !clang-format '--assume-filename=%'"
+  call setpos(".", l:save_pos)
+endfunction
+map _fc :call ClangFormatHK()<CR>
+
 " zen mode
 map <F3> :Goyo<CR>
 let g:colors_name = ""
@@ -198,3 +208,8 @@ hi EndOfBUffer ctermfg=237
 
 " disabled ex mode
 map Q <NOP>
+
+" Ctrl+P file search
+map <C-P> :Files<CR>
+map <C-S-P> :Files!<CR>
+map <C-L> :Lines!<CR>
