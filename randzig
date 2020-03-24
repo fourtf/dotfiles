@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+raw_devices = `xrandr -q`
+  .lines(chomp: true)
+  .filter{|x|not x.start_with? "   ", "Screen"}
+internal_device = raw_devices
+  .filter{|x|x.include? "primary"}
+  .map{|x|x.sub(/\s.*$/, "")}[0]
+all_devices = raw_devices
+  .filter{|x|not x.include? "disconnected"}
+  .map{|x|x.sub(/\s.*$/, "")}
+external_devices = all_devices - [internal_device]
+
+if ARGV[0] == "auto"
+  `xrandr --output "#{internal_device}" --auto`
+  for x in external_devices
+    `xrandr --output "#{x}" --auto --left-of "#{internal_device}"`
+  end
+elsif ARGV[0] == "internal"
+  `xrandr --output "#{internal_device}" --auto`
+  for x in external_devices
+    `xrandr --output "#{x}" --off`
+  end
+elsif ARGV[0] == "external"
+  `xrandr --output "#{internal_device}" --off`
+  for x in external_devices
+    `xrandr --output "#{x}" --auto`
+  end
+elsif ARGV[0] == "mirror"
+  `xrandr --output "#{internal_device}" --auto`
+  for x in external_devices
+    `xrandr --output "#{x}" --same-as "#{internal_device}" --mode 1920x1080`
+  end
+elsif ARGV[0] == "enable_internal"
+  `xrandr --output "#{internal_device}" --auto`
+else
+  puts "usage: randzig [auto|internal|external|mirror|enable_internal]"
+end
+
+print ARGV
+print internal_device
+print external_devices
+
+# external monitor only
+if external_devices.empty?
+  `xrandr --auto`
+else
+end

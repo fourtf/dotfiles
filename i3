@@ -198,13 +198,14 @@ hide_edge_borders smart
 # autostart
 exec --no-startup-id nm-applet
 exec --no-startup-id volumeicon
-exec --no-startup-id xss-lock -- xsecurelock
+exec --no-startup-id xss-lock -- randzig enable_internal; lock
 
 # select output display
 ## HDMI
-bindsym Mod4+F1 exec --no-startup-id randzig auto
-bindsym Mod4+F2 exec --no-startup-id randzig external
-bindsym Mod4+F3 exec --no-startup-id randzig mirror
+bindsym Mod4+F1 exec --no-startup-id randzig auto && ~/.fehbg
+bindsym Mod4+F2 exec --no-startup-id randzig internal && ~/.fehbg
+bindsym Mod4+F3 exec --no-startup-id randzig external && ~/.fehbg
+bindsym Mod4+F4 exec --no-startup-id randzig mirror && ~/.fehbg
 
 # rotate display
 bindsym Mod4+Shift+Ctrl+Left exec --no-startup-id xrandr -o right
@@ -218,33 +219,31 @@ bindsym Shift+XF86MonBrightnessUp exec xbacklight -inc 1 # increase screen brigh
 bindsym Shift+XF86MonBrightnessDown exec xbacklight -dec 1 # decrease screen brightness
 
 # screen color
-bindsym Mod4+z exec --no-startup-id xcalib -a -i
+bindsym Mod4+z exec --no-startup-id xrandr-invert-colors # xcalib -a -i
 bindsym Mod4+F5 exec --no-startup-id xcalib -blue 1 0 70 -green 1 0 80 -a
 bindsym Mod4+F6 exec --no-startup-id xcalib -c -a
 
 # launch apps
 bindsym Mod4+b fullscreen disable; exec --no-startup-id browser
 bindsym Mod4+Shift+b fullscreen disable; exec --no-startup-id chromium
-bindsym Mod4+t fullscreen disable; exec --no-startup-id alacritty
+bindsym Mod4+t fullscreen disable; exec --no-startup-id termite
 bindsym Shift+Ctrl+4 exec flameshot gui
 bindsym Mod4+n exec nm-popup
 
 # lock screen
-bindsym Mod4+Ctrl+L exec --no-startup-id xsecurelock
-
-# keyboard layout
-exec --no-startup-id setxkbmap 'us(altgr-intl)'
+bindsym Mod4+Ctrl+L exec --no-startup-id randzig enable_internal; exec --no-startup-id lock
 
 # background picture
 exec --no-startup-id feh --bg-fill /home/daniel/bgs/gondola002.jpg
+#exec --no-startup-id feh --bg-fill "/home/daniel/bgs/The Scene is Dead/55.png"
 
 # set repeat rate
-exec --no-startup-id xset r rate 400 60
-
-# misc
-#bindsym Mod4+G workspace "google"
-#exec --no-startup-id i3-msg 'workspace google; exec /usr/bin/term -e googler'
-#exec --no-startup-id i3-msg 'workspace 1'
+#exec --no-startup-id xset r rate 400 60
 
 bindsym Mod4+Tab exec --no-startup-id i3-msg border normal
 bindsym Mod4+Shift+Tab exec --no-startup-id i3-msg border 1pixel
+
+floating_maximum_size 1500x1000
+
+
+bindsym Mod4+M move workspace to output left
