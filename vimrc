@@ -48,6 +48,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'ElmCast/elm-vim'
 Plug 'tkztmk/vim-vala'
 Plug 'nvie/vim-flake8' " Python
+Plug 'pprovost/vim-ps1'
 
 " Frameworks
 Plug 'posva/vim-vue'
@@ -213,3 +214,5 @@ map Q <NOP>
 map <C-P> :Files<CR>
 map <C-S-P> :Files!<CR>
 map <C-L> :Lines!<CR>
+
+set backspace=indent,eol,start
