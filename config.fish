@@ -17,8 +17,16 @@ function find-file
     fzf -0 -1 --preview='head -\$LINES {}' --preview-window=down
 end
 
+function find-files
+    fzf -0 -1 --preview='head -\$LINES {}' --preview-window=down -m
+end
+
+function find-files-or-directories
+    find . | fzf -0 -1 --preview='head -\$LINES {}' --preview-window=down -m
+end
+
 function rgrep
-    grep -rn --color=auto --exclude-dir=node_modules "$argv" .
+    grep -rn --color=auto --exclude-dir=node_modules $argv .
 end
 
 function accept-port
@@ -64,7 +72,7 @@ alias count-words "wc -w"
 alias edit-config "eval \"\$EDITOR $SHARED_CONFIG; source-config\""
 alias edit-localconfig "eval \"$EDITOR $LOCAL_CONFIG; source-localconfig\""
 alias feh "feh --version-sort"
-alias gap "git add --patch ."
+alias gap "git add --patch"
 alias katze cat
 alias listen-port "nc -lvp"
 alias make "make -j4"
@@ -74,7 +82,9 @@ alias open-port accept-port
 alias pacs "eval \"pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S\""
 alias source-config "source $SHARED_CONFIG"
 alias source-localconfig "source $LOCAL_CONFIG"
-alias yays "eval \"yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro sudo yay -S\""
+alias yays "eval \"yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S\""
+alias gits "eval \"begin; git diff --name-only --relative .; git ls-files --others --exclude-standard; end | fzf -m --preview 'git diff {1}' | xargs git add\""
+alias gitsrm "eval \"begin; git diff --name-only --relative .; git ls-files --others --exclude-standard; end | fzf -m --preview 'git diff {1}' | xargs rm\""
 
 # Function for i3
 function set-ws -a nr -a name
