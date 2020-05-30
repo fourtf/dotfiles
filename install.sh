@@ -45,3 +45,5 @@ confirm "Link xorg touchpad config" && sudo_link "$(pwd)/90-touchpad.conf" "/etc
 confirm "Link xorg keyboard config" && sudo_link "$(pwd)/00-keyboard.conf" "/etc/X11/xorg.conf.d/00-keyboard.conf"
 confirm "Link lock application"     && sudo_link "$(pwd)/lock"             "/usr/local/bin/lock"
 confirm "Link randzig"              && sudo_ink "$(pwd)/randzig"          "/usr/local/bin/randzig"
+confirm "Persist webcam config"     && cd "$(pwd)/v4l2-persistent-settings/" && sudo make install
+

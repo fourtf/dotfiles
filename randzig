@@ -16,6 +16,11 @@ if ARGV[0] == "auto"
   for x in external_devices
     `xrandr --output "#{x}" --auto --left-of "#{internal_device}"`
   end
+elsif ARGV[0] == "auto-right"
+  `xrandr --output "#{internal_device}" --auto`
+  for x in external_devices
+    `xrandr --output "#{x}" --auto --right-of "#{internal_device}"`
+  end
 elsif ARGV[0] == "internal"
   `xrandr --output "#{internal_device}" --auto`
   for x in external_devices
@@ -34,7 +39,7 @@ elsif ARGV[0] == "mirror"
 elsif ARGV[0] == "enable_internal"
   `xrandr --output "#{internal_device}" --auto`
 else
-  puts "usage: randzig [auto|internal|external|mirror|enable_internal]"
+  puts "usage: randzig [auto|auto-right|internal|external|mirror|enable_internal]"
 end
 
 print ARGV

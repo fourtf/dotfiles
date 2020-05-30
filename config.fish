@@ -122,6 +122,17 @@ function fish_user_key_bindings
 end
 
 # ENVIRONMENT VARIABLES
-set PATH ~/.local/bin $PATH $DOTFILE_DIR/bin
+set PATH ~/.local/bin $PATH $DOTFILE_DIR/bin $DOTFILE_DIR/v4l2-persistent-settings ~/.cargo/bin
 set -x LS_COLORS "$LS_COLORS:ow=1;34:tw=1;34:"
 set -x EDITOR /usr/bin/vim
+set -x PAGER most
+
+# KEYBINDS
+# copy the current commandline to clipboard.
+bind \cy eval "commandline -b | xclip"
+# view the --help in a pager of current command.
+bind \cp eval "eval (commandline -jo | head -n 1)\" --help | \$PAGER\""
+# view the manpage of the current command.
+bind \ch eval "eval man (commandline -jo | head -n 1)"
+# search for files using fzf
+bind \cn eval 'commandline -i (find-files | while read line; echo -n "\"$line\" "; end) 2> /dev/null'

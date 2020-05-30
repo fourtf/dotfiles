@@ -137,3 +137,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # rgrep function. Usage: `rgrep "regex"`
 function rgrep  { grep -rn --color=auto "$1" .; }
+
+source /home/daniel/.config/broot/launcher/bash/br

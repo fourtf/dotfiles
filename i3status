@@ -18,7 +18,6 @@ general {
     color_bad = '#ff0000'
 }
 
-#order += "volume master"
 #order += "disk /"
 #order += "disk /data"
 #order += "disk /home"
@@ -31,6 +30,7 @@ general {
 order += "battery 0"
 order += "wireless wlp2s0"
 #order += "space 0"
+order += "memory"
 #order += "load"
 order += "tztime local1"
 order += "tztime local2"
@@ -80,6 +80,12 @@ tztime local2 {
 
 load {
     format = " %1min"
+}
+
+memory {
+    format = "%used"
+    threshold_degraded = "10%"
+    format_degraded = "MEMORY: %free"
 }
 
 cpu_usage {

@@ -29,7 +29,6 @@ Plug 'skwp/greplace.vim'
 
 " Autocompletion
 Plug 'valloric/youcompleteme'
-"Plug 'dense-analysis/ale'
 
 " Guess indent width
 Plug 'tpope/vim-sleuth'
@@ -49,14 +48,19 @@ Plug 'ElmCast/elm-vim'
 Plug 'tkztmk/vim-vala'
 Plug 'nvie/vim-flake8' " Python
 Plug 'pprovost/vim-ps1'
+Plug 'vim-scripts/matchit.zip' " html switch tags with %
+Plug 'alvan/vim-closetag' " html close tags
+Plug 'udalov/kotlin-vim'
 
 " Frameworks
 Plug 'posva/vim-vue'
+Plug 'Quramy/tsuquyomi'
+Plug 'Quramy/tsuquyomi-vue'
 
 " Misc
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/fzf.vim'
+Plug 'fourtf/fzf.vim'
 call plug#end()
 filetype plugin indent on
 
@@ -172,11 +176,15 @@ set wildignore+=*.o,moc_*,/.git/
 map _v :let &ve=&ve=="all"?"block":"all"<CR>
 
 " format/test xml
-map _fx :% !xmllint --nowarning -<CR>
+map _fx :% !xmllint --nowarning --format -<CR>
 map _tx :%w !xmllint --noout -<CR>
 
 " format json
 map _fj :% !python -m json.tool -<CR>
+
+" fix js using eslint
+map _fe : !eslint --fix %<CR>
+map <silent> _fE mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
 
 " format using clang-format
 function! ClangFormatHK()
@@ -211,8 +219,36 @@ hi EndOfBUffer ctermfg=237
 map Q <NOP>
 
 " Ctrl+P file search
-map <C-P> :Files<CR>
-map <C-S-P> :Files!<CR>
-map <C-L> :Lines!<CR>
+function AutoFiles ()
+  silent execute "!git rev-parse --git-dir"
+  if v:shell_error == 0
+    GFilesWithUntracked
+  else
+    Files
+  endif
+endfunction
+
+map <C-P> :call AutoFiles()<CR>
 
 set backspace=indent,eol,start
+
+" Closing tags
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
+"let g:ale_fix_on_save = 1
+"let g:ale_fixers = {'javascript': ['eslint_d'], 'typescript': ['eslint_d']}
+"let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
+"let g:ale_linters = {'vue': ['eslint', 'vls']}
+"let g:ale_javascript_eslint_use_global = 0
+let g:ale_javascript_eslint_executable = 'eslint_d'
+"let g:
+let g:ale_linter_aliases = {'vue': ['javascript']}
+"let g:vue_pre_processors = 'detect_on_enter'
+
+set autoread
+
+set background=light
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
+
+" let g:loaded_fzf = 1
+
+autocmd BufNewFile,BufRead *.vue set filetype=vue

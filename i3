@@ -1,4 +1,4 @@
-# i3 config file (v4)
+# I3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #
@@ -93,7 +93,7 @@ bindsym Mod4+a focus parent
 bindsym Mod4+x focus child
 
 # toggle tiling / floating
-bindsym Mod4+Shift+space floating toggle
+bindsym Mod4+Shift+space fullscreen disable; floating toggle
 
 # change focus between tiling / floating windows
 bindsym Mod4+space focus mode_toggle
@@ -187,6 +187,10 @@ bar {
         font pango: Icons, Noto Sans Mono 10
         status_command i3status
         separator_symbol "|"
+
+        # invert bar scroll direction
+        bindsym button4 workspace next_on_output
+        bindsym button5 workspace prev_on_output
 }
 
 #######################################################################
@@ -203,6 +207,7 @@ exec --no-startup-id xss-lock -- randzig enable_internal; lock
 # select output display
 ## HDMI
 bindsym Mod4+F1 exec --no-startup-id randzig auto && ~/.fehbg
+bindsym Mod4+Shift+F1 exec --no-startup-id randzig auto-right && ~/.fehbg
 bindsym Mod4+F2 exec --no-startup-id randzig internal && ~/.fehbg
 bindsym Mod4+F3 exec --no-startup-id randzig external && ~/.fehbg
 bindsym Mod4+F4 exec --no-startup-id randzig mirror && ~/.fehbg
@@ -242,8 +247,5 @@ exec --no-startup-id feh --bg-fill /home/daniel/bgs/gondola002.jpg
 
 bindsym Mod4+Tab exec --no-startup-id i3-msg border normal
 bindsym Mod4+Shift+Tab exec --no-startup-id i3-msg border 1pixel
-
-floating_maximum_size 1500x1000
-
 
 bindsym Mod4+M move workspace to output left
