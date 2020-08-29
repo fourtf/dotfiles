@@ -80,6 +80,7 @@ alias make5 "make -j4 CFLAGS=\"-fmax-errors=5\""
 alias new-bash "new-script bash"
 alias open-port accept-port
 alias pacs "eval \"pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S\""
+alias ¿ "git status"
 alias source-config "source $SHARED_CONFIG"
 alias source-localconfig "source $LOCAL_CONFIG"
 alias yays "eval \"yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S\""
